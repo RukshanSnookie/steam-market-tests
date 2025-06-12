@@ -6,7 +6,6 @@ class Marketpage {
         this.advancedSearchBtn = this.page.locator('#market_search_advanced_show');
         this.allGamesDropdown = this.page.locator('#market_advancedsearch_appselect .market_advancedsearch_appname');
         this.heroDropdown = this.page.locator('select[name="category_570_Hero[]"]');
-        this.rarityDropdown = this.page.locator('input#tag_570_Rarity_Rarity_Rare');
         this.searchBtn = page.locator('.btn_green_white_innerfade', { hasText: 'Search' });
         this.showingResults = page.locator('a.market_searchedForTerm');
         this.firsrtResult = page.locator('.market_listing_row.market_recent_listing_row').first();
@@ -32,9 +31,9 @@ class Marketpage {
     }
 
     async selectRarity(rarityName) {
-        const rareRarityCheckbox = this.page.locator('input#tag_570_Rarity_Rarity_Rare');
-        await rareRarityCheckbox.check();    
-}
+        const rarityCheckbox = this.page.locator(`input[name="category_570_Rarity[]"][value="tag_Rarity_${rarityName}"]`);
+        await rarityCheckbox.check();
+    }
 
     async clickSearch() {
         await this.searchBtn.click();
@@ -52,6 +51,27 @@ class Marketpage {
 
     async isAdvancedSearchWindowVisible() {
         return await this.advancedSearchWindow.isVisible();
+    }
+
+    get priceHeader() {
+        return this.page.locator('.market_listing_their_price.market_sortable_column');
+    }
+
+    get priceCells() {
+        return this.page.locator('.market_listing_row .market_listing_price_with_fee');
+    }
+
+    async sortByPrice() {
+        await this.priceHeader.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async getAllListingPrices() {
+        const texts = await this.priceCells.allTextContents();
+        return texts.map(text => {
+            const match = text.replace(/[^\d.,]/g, '').replace(',', '.').trim();
+            return parseFloat(match);
+        }).filter(n => !isNaN(n));
     }
 }
 
