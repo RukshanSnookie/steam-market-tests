@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { MainPage } = require('../pages/MainPage'); 
 const { Marketpage } = require('../pages/MarketPage');
 const { STEAM_MAIN, STEAM_MARKET } = require('../testdata/urls');
+const { isSortedAscending, isSortedDescending } = require('../utils/sortUtil');
 
 test('Steam Market - price sorting', async ({ page }) => {
 
@@ -20,19 +21,7 @@ test('Steam Market - price sorting', async ({ page }) => {
     await marketPage.validateShowingTags(['Dota 2', 'Anti-Mage', 'Uncommon']);
 
     
-    function isSortedAscending(arr) {
-        for (let i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) return false;
-        }
-    return true;
-    }
-    
-    function isSortedDescending(arr) {
-        for (let i = 1; i < arr.length; i++) {
-            if (arr[i] > arr[i - 1]) return false;
-        }
-    return true;
-    }
+
 
     await marketPage.sortByPrice();
     const pricesAsc = await marketPage.getAllListingPrices();

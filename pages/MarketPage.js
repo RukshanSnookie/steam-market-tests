@@ -21,18 +21,35 @@ class Marketpage {
     }
 
     async selectGame(gameName) {
-        await this.allGamesDropdown.click();
-        await this.page.locator('.popup_menu .popup_item', { hasText: gameName }).click();    
+        try {
+            await this.allGamesDropdown.click();
+            await this.page.locator('.popup_menu .popup_item', { hasText: gameName }).click();  
+        } catch (error) {
+            console.error('Error selecting game "${gamename}":', error);
+            throw error;
+        }
+          
     }
 
     async selectHero(heroName) {
-        await this.heroDropdown.click();
-        await this.heroDropdown.selectOption({label: heroName});
+        try {
+            await this.heroDropdown.click();
+            await this.heroDropdown.selectOption({label: heroName});
+        } catch (error) {
+            console.error('Error selecting hero "${heroName}":', error);
+            throw error;
+        }
+        
     }
 
     async selectRarity(rarityName) {
-        const rarityCheckbox = this.page.locator(`input[name="category_570_Rarity[]"][value="tag_Rarity_${rarityName}"]`);
-        await rarityCheckbox.check();
+        try {
+            const rarityCheckbox = this.page.locator(`input[name="category_570_Rarity[]"][value="tag_Rarity_${rarityName}"]`);
+            await rarityCheckbox.check();
+        } catch (error) {
+            console.error('Error selecting rarity "${rarityName}":', error);
+            throw error;
+        }
     }
 
     async clickSearch() {
