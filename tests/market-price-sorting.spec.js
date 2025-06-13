@@ -8,7 +8,8 @@ test('Steam Market - price sorting', async ({ page }) => {
 
     await page.goto(STEAM_MAIN);
     await expect(page).toHaveTitle(/Steam/);
-    await page.goto(STEAM_MARKET);
+    const mainPage = new MainPage(page);
+    await mainPage.goToCommunityMarket();
     await expect(page).toHaveTitle(/Steam Community Market/);
     
     const marketPage = new Marketpage(page);
@@ -19,9 +20,6 @@ test('Steam Market - price sorting', async ({ page }) => {
     await marketPage.selectRarity('Uncommon');
     await marketPage.clickSearch();
     await marketPage.validateShowingTags(['Dota 2', 'Anti-Mage', 'Uncommon']);
-
-    
-
 
     await marketPage.sortByPrice();
     const pricesAsc = await marketPage.getAllListingPrices();
