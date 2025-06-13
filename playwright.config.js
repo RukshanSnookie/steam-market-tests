@@ -1,7 +1,11 @@
 module.exports = {
-  testDir: './tests',   // Directory where tests are locate
+  testDir: './tests',  
   use: {
-    headless: true,  // Run tests in headless mode
+    headless: true,  
   },
-  timeout: 30000,       // Maximum time for each test
+  timeout: 30000,
+  reporter: [
+    ['list'],
+    ['allure-playwright']
+  ]
   };
