@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","10445","Steam Market - price sorting","","Fri Jun 13 09:58:09 EEST 2025","passed","Fri Jun 13 09:58:20 EEST 2025","","market-price-sorting.spec.js","",""
+"","9469","Advanced Search on Steam Community Market","","Fri Jun 13 09:58:09 EEST 2025","passed","Fri Jun 13 09:58:19 EEST 2025","","market-advanced-search.spec.js","",""
