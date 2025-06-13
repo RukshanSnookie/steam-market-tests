@@ -63,6 +63,7 @@ pages/        # Page Object Model files
 tests/        # Test scripts
 testdata/     # Test data (e.g., URLs)
 util/         # Utility scripts
+playwright.config.js #Handle main configs
 .github/      # GitHub Actions workflows
 ```
 
