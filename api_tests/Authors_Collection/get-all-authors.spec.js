@@ -10,4 +10,5 @@ test('Get all authors', async ({request}) => {
 
    const responseText = await response.text()
    expect(responseText).toContain('idBook');
+   console.log(response.json());
 });
