@@ -1,5 +1,5 @@
 module.exports = {
-  testDir: './tests',  
+  testDir: './',
   use: {
     headless: true,  
   },
