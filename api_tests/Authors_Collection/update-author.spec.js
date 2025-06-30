@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const { BASE_URI } = require('../../testdata/urls');
 
-test("Update author data", async ({ request }) => {
+test("Update author data @API11", async ({ request }) => {
     const response = await request.put(`${BASE_URI}/api/v1/Authors/5`, {
         data: {
             "id": 1100,

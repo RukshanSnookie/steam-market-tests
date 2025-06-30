@@ -3,7 +3,7 @@ const {STEAM_MAIN, STEAM_MARKET} = require('../testdata/urls');
 const {MainPage} = require('../pages/MainPage');
 const {Marketpage} = require('../pages/MarketPage'); 
 
-test('Advanced Search on Steam Community Market', async ({page}) => {
+test('Advanced Search on Steam Community Market', {tag: '@TID22'}, async ({page}) => {
     await page.goto(STEAM_MAIN);
     await expect(page).toHaveTitle(/Steam/);
 
